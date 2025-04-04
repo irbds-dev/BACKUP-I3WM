@@ -1,0 +1,54 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        colors = true
+        interval = 5
+	markup = "pango"
+	separator = ""
+}
+
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "battery all"
+order += "disk /"
+order += "memory"
+order += "tztime local"
+
+wireless _first_ {
+        format_up = " 󰖩%quality"
+        format_down = " 󰖪 "
+}
+
+ethernet _first_ {
+        format_up = " 󰌘 "
+        format_down = " 󰌙 "
+}
+
+battery all {
+        format = "%status<span color='#5f9ea0'> %percentage %remaining</span>"
+	last_full_capacity = true
+	status_full = "<span color='#00ff00'> 󱈏</span>"	
+	status_idle = "<span color='#00ff00'> 󱈏</span>"	
+	status_chr = "<span color='#5f9ea0'> 󰂅</span>"
+	status_bat = "<span color='#c100ff'> 󱧥</span>"
+}
+
+disk "/" {
+        format = "<span color='#ffff56'>  %avail</span>"
+}
+
+memory {
+        format = "<span color='#f400a1'>  %percentage_used</span>"
+        threshold_degraded = "1G"
+        format_degraded = "MEMORY < %available"
+}
+
+tztime local {
+        format = "<span color='#f5fffb'>  %d/%m/%Y %H:%M</span>"
+}
